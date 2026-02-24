@@ -1,6 +1,8 @@
-import 'package:carporater/widgets/gradient.dart';
+import 'package:carporater/core/widgets/gradient.dart';
+import 'package:carporater/core/widgets/appbar.dart';
 import 'package:flutter/material.dart';
-import 'package:carporater/widgets/appbar.dart';
+
+
 
 class MainScaffold extends StatefulWidget {
   final Widget body;
@@ -84,10 +86,34 @@ class _MainScaffoldState extends State<MainScaffold> {
                     ),
 
                     const Divider(),
-
-                    menuItem(Icons.home, "Home",),
+                    menuItem(Icons.analytics_rounded, "Dashboard"),
                     menuItem(Icons.person, "Profile"),
-                    menuItem(Icons.settings, "Settings"),
+                    menuItem(Icons.admin_panel_settings_outlined, "Password"),
+                    menuItem(Icons.article, "Complaints"),
+                    menuItem(Icons.all_inbox_rounded, "Complaint History"),
+                    menuItem(Icons.assignment_turned_in_rounded, "Resolved Issues"),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,                        
+                      ),
+                      onPressed: (){},
+                      child: Padding(
+                        padding: EdgeInsetsGeometry.all(10),
+                        child: Row(
+                          children: [
+                            Icon(Icons.logout_rounded,color: Colors.white,),
+                            SizedBox(width : 5),
+                           const Text("Logout",
+                           style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight(16),
+                            color: Colors.white,
+                           ),
+                           )
+                          ],
+                        ),),
+
+                      )
                   ],
                 ),
               ),

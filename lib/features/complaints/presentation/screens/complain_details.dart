@@ -1,8 +1,8 @@
+import 'package:carporater/core/widgets/main_scaffold.dart';
+import 'package:carporater/features/complaints/presentation/widgets/image_displayer.dart';
+import 'package:carporater/features/complaints/presentation/widgets/item.dart';
 import 'package:flutter/material.dart';
-import 'package:carporater/widgets/appbar.dart';
-import 'package:carporater/presentation/widgets/item.dart';
-import 'package:carporater/presentation/widgets/image_displayer.dart';
-import 'package:carporater/widgets/main_scaffold.dart';
+
 
 class ComplainDetails extends StatelessWidget {
   const ComplainDetails({super.key});

@@ -1,7 +1,8 @@
-import 'package:carporater/presentation/screens/complain_details.dart';
-import 'package:carporater/presentation/widgets/compliant_list_item.dart';
+import 'package:carporater/core/widgets/main_scaffold.dart';
+import 'package:carporater/features/complaints/presentation/screens/complain_details.dart';
+import 'package:carporater/features/complaints/presentation/widgets/compliant_list_item.dart';
 import 'package:flutter/material.dart';
-import 'package:carporater/widgets/main_scaffold.dart';
+
 
 class ListComplaints extends StatelessWidget {
   const ListComplaints({super.key});

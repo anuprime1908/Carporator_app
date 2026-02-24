@@ -1,5 +1,6 @@
+import 'package:carporater/core/widgets/gradient.dart';
 import 'package:flutter/material.dart';
-import 'package:carporater/widgets/gradient.dart';
+
 
 AppBar appBar(
   BuildContext context, {
