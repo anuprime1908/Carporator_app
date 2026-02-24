@@ -91,29 +91,37 @@ class _MainScaffoldState extends State<MainScaffold> {
                     menuItem(Icons.admin_panel_settings_outlined, "Password"),
                     menuItem(Icons.article, "Complaints"),
                     menuItem(Icons.all_inbox_rounded, "Complaint History"),
-                    menuItem(Icons.assignment_turned_in_rounded, "Resolved Issues"),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.red,                        
-                      ),
-                      onPressed: (){},
-                      child: Padding(
-                        padding: EdgeInsetsGeometry.all(10),
-                        child: Row(
-                          children: [
-                            Icon(Icons.logout_rounded,color: Colors.white,),
-                            SizedBox(width : 5),
-                           const Text("Logout",
-                           style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight(16),
-                            color: Colors.white,
-                           ),
-                           )
-                          ],
-                        ),),
-
-                      )
+                    menuItem(Icons.qr_code, "Download QR"),
+                    Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shadowColor: Colors.black87,
+                          elevation: 10,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          backgroundColor: Colors.red,                        
+                        ),
+                        onPressed: (){},
+                        child: Padding(
+                          padding: EdgeInsetsGeometry.all(10),
+                          child: Row(
+                            children: [
+                              Icon(Icons.logout_rounded,color: Colors.white,),
+                              SizedBox(width : 5),
+                             const Text("Logout",
+                             style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight(16),
+                              color: Colors.white,
+                             ),
+                             )
+                            ],
+                          ),),
+                      
+                        ),
+                    )
                   ],
                 ),
               ),

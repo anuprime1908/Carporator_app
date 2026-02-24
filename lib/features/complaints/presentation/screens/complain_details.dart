@@ -1,106 +1,123 @@
+import 'package:carporater/features/complaints/presentation/widgets/status_badge.dart';
+import 'package:flutter/material.dart';
 import 'package:carporater/core/widgets/main_scaffold.dart';
+import 'package:carporater/features/complaints/domain/model/complaint_model.dart';
 import 'package:carporater/features/complaints/presentation/widgets/image_displayer.dart';
 import 'package:carporater/features/complaints/presentation/widgets/item.dart';
-import 'package:flutter/material.dart';
-
 
 class ComplainDetails extends StatelessWidget {
-  const ComplainDetails({super.key});
+  final ComplaintModel complaint;
 
-void displayImage(context){
-  showDialog(
-    context: context,
-    barrierDismissible: false,
-    builder: (context) {
-      return Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: SingleChildScrollView(
-            child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              ImageBox(path: "assets/images/logo.png"),
-              SizedBox(height: 20),
-              ImageBox(path: "assets/images/logo.png"),
-              SizedBox(height: 20),
-              ImageBox(path: "assets/images/logo.png"),
-              SizedBox(height: 20),
-              SizedBox(height: 20),
-              ImageBox(path: "assets/images/logo.png"),
-              SizedBox(height: 20),
-              SizedBox(height: 20),
-              ImageBox(path: "assets/images/logo.png"),
-              SizedBox(height: 20),
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text("back"),
-              ),
-            ],
+  const ComplainDetails({
+    super.key,
+    required this.complaint,
+  });
+
+
+  void displayImage(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (context) {
+        return Dialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
           ),
-          )
-          
-        ),
-      );
-    },
-  );
-    }
+          child: Padding(
+            padding: const EdgeInsets.all(20),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const ImageBox(path: "assets/images/logo.png"),
+                  const SizedBox(height: 20),
+                  const ImageBox(path: "assets/images/logo.png"),
+                  const SizedBox(height: 20),
+                  const ImageBox(path: "assets/images/logo.png"),
+                  const SizedBox(height: 20),
+                  const ImageBox(path: "assets/images/logo.png"),
+                  const SizedBox(height: 20),
 
-
-  final Map<String, String> record = const {
-      "name": "A.R. Madhanvan",
-      "mobile no.": "xxxxxxxxxxx",
-      "email": "test@gmail.com",
-      "complaint description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more",
-      "location": "Nashik Road, Nashik"
-    };
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text("Back"),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return MainScaffold(
       title: "Complaint Details",
-      body: Container(
-        padding: EdgeInsets.all(16),
-        child:  Card(
-              margin : EdgeInsets.all(10),
-              surfaceTintColor: Colors.grey,
-              elevation: 6,
-              shadowColor: Colors.black.withOpacity(0.15),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18),
-              ),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Card(
+          margin: const EdgeInsets.all(10),
+          elevation: 6,
+          surfaceTintColor: Colors.grey,
+          shadowColor: Colors.black.withOpacity(0.15),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(18),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
 
-              child: Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                Row(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [TextButton.icon(
-                      onPressed: () => Navigator.of(context).pop(),
-                      icon : Icon(Icons.arrow_back,),
-                      label: const Text(''),
-                    ),],
+                    TextButton.icon(
+                      onPressed: () => Navigator.pop(context),
+                      icon: const Icon(Icons.arrow_back),
+                      label: const Text("Back"),
                     ),
-                    
-                    item("Name", record["name"] ?? ""),
-                    item("Mobile No.", record["mobile no."] ?? ""),
-                    item("Email", record["email"] ?? ""),
-                    item("Desription", record["complaint description"] ?? ""),
-                    TextButton(
-                      onPressed: (){displayImage(context);},
-                      child: const Text('View Images')),
-                    item("Location", record["location"] ?? ""),
                   ],
                 ),
-              ),
+
+                const SizedBox(height: 10),
+
+                item("Complaint ID", complaint.complaintId),
+                item("Name", complaint.name),
+                item("Mobile No.", complaint.mobileNo),
+                item("Email", complaint.email ?? "Not Provided"),
+                item(
+                  "Description",
+                  complaint.description ?? "No description available",
+                ),
+
+                TextButton(
+                  onPressed: () => displayImage(context),
+                  child: const Text("View Images"),
+                ),
+
+                item("Location", complaint.location),
+                item("Status",complaint.status),
+
+                const SizedBox(height: 10),
+
+            
+                Row(
+                  children: [
+                    const Text(
+                      "Status: ",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    statusBadge(complaint.status),
+                  ],
+                ),
+              ],
             ),
-      )
-      );
+          ),
+        ),
+      ),
+    );
   }
+
 }
