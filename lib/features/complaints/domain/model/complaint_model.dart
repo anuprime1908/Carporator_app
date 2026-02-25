@@ -6,6 +6,8 @@ class ComplaintModel {
   final String? description;
   final String location;
   final String status;
+  final String actionsTaken;
+  final List<String> images;
 
   const ComplaintModel({
     required this.complaintId,
@@ -15,6 +17,8 @@ class ComplaintModel {
     required this.status,
     this.email,
     this.description,
+    required this.actionsTaken,
+    required this.images,
   });
   
 //for the backend later 
@@ -27,6 +31,8 @@ class ComplaintModel {
       status: map["status"],
       email: map["email"],
       description: map["description"],
+      actionsTaken: map["actionsTaken"],
+      images: map["images"]
     );
   }
 
@@ -38,5 +44,7 @@ class ComplaintModel {
         "status": status,
         "email": email,
         "description": description,
+        "actionsTaken" : actionsTaken,
+        "images":images,
       };
 }

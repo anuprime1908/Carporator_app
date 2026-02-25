@@ -54,26 +54,29 @@ class _ListComplaintsState extends State<ListComplaints> {
           Padding(
             padding: const EdgeInsets.symmetric(
                 horizontal: 16, vertical: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                filterButton('all',
-                    onTap: () => applyFilter('all')),
-                filterButton('pending',
-                    onTap: () => applyFilter('pending')),
-                filterButton('in progress',
-                    onTap: () => applyFilter('in progress')),
-                filterButton('complete',
-                    onTap: () => applyFilter('complete')),
-
-                const SizedBox(width: 10),
-
-
-                IconButton(
-                  onPressed: () => applyFilter("all"),
-                  icon: const Icon(Icons.filter_list_alt),
-                ),
-              ],
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  filterButton('all',
+                      onTap: () => applyFilter('all')),
+                  filterButton('pending',
+                      onTap: () => applyFilter('pending')),
+                  filterButton('in progress',
+                      onTap: () => applyFilter('in progress')),
+                  filterButton('complete',
+                      onTap: () => applyFilter('complete')),
+              
+                  const SizedBox(width: 10),
+              
+              
+                  IconButton(
+                    onPressed: () => applyFilter("all"),
+                    icon: const Icon(Icons.filter_list_alt),
+                  ),
+                ],
+              ),
             ),
           ),
 

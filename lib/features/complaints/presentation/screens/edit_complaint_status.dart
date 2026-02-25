@@ -166,8 +166,8 @@ class _EditComplaintStatusState
 
                     const SizedBox(height: 20),
                     const Text("Upload Evidence Photos"),
-                    const SizedBox(height: 10),
-                    const ComplaintImageSection(),
+                    const SizedBox(height: 10),/*
+                    const ComplaintImageSection(),*/
                     const SizedBox(height: 20),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(

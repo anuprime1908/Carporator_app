@@ -1,5 +1,8 @@
 import 'package:carporater/core/widgets/gradient.dart';
 import 'package:carporater/core/widgets/appbar.dart';
+import 'package:carporater/features/admin_dashboard/presentation/screens/profile_page.dart';
+import 'package:carporater/features/auth/presentation/screens/reset_password_page.dart';
+import 'package:carporater/features/complaints/presentation/screens/list_complaints.dart';
 import 'package:flutter/material.dart';
 
 
@@ -86,12 +89,29 @@ class _MainScaffoldState extends State<MainScaffold> {
                     ),
 
                     const Divider(),
-                    menuItem(Icons.analytics_rounded, "Dashboard"),
-                    menuItem(Icons.person, "Profile"),
-                    menuItem(Icons.admin_panel_settings_outlined, "Password"),
-                    menuItem(Icons.article, "Complaints"),
-                    menuItem(Icons.all_inbox_rounded, "Complaint History"),
-                    menuItem(Icons.qr_code, "Download QR"),
+                    menuItem(Icons.analytics_rounded,"Dashboard", () {
+                      Navigator.popUntil(context, (route) => route.isFirst);
+                    }),
+                    menuItem(Icons.person,"Profile",() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder:(_) => const ProfilePage()),
+                      );
+                    }),
+                    menuItem(Icons.admin_panel_settings_outlined,"Reset Password",()
+                    {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder:(_) => const ResetPasswordPage()),
+                      );
+                    }),
+                    menuItem(Icons.article, "Complaints",()
+                    {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder:(_) => const ListComplaints()),
+                      );
+                    }),
+                    menuItem(Icons.all_inbox_rounded, "Complaint History",(){}),
+                    menuItem(Icons.qr_code, "Download QR",(){}),
                     Padding(
                       padding: const EdgeInsets.all(10),
                       child: ElevatedButton(
@@ -132,14 +152,17 @@ class _MainScaffoldState extends State<MainScaffold> {
     );
   }
 
-  Widget menuItem(IconData icon, String title) {
+  Widget menuItem(IconData icon, String title, VoidCallback onTap) {
     return ListTile(
-      leading: Icon(icon ,color: Colors.white,),
-      title: Text(title,
-      style: TextStyle(
-        color: Colors.white,
-      ),),
-      onTap: () {},
+      leading: Icon(icon, color: Colors.white),
+      title: Text(
+        title,
+        style: const TextStyle(color: Colors.white),
+      ),
+      onTap: () {
+        toggleMenu();
+        onTap();
+      },
     );
   }
 }

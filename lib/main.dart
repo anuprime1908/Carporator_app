@@ -1,4 +1,4 @@
-import 'package:carporater/features/complaints/presentation/screens/list_complaints.dart';
+import 'package:carporater/features/admin_dashboard/presentation/screens/admin_dashboard.dart';
 import 'package:flutter/material.dart';
 
 
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       debugShowCheckedModeBanner: false,
-      home: ListComplaints(),
+      home: AdminDashboard(),
     );
   }
 }

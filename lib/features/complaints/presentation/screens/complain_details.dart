@@ -1,55 +1,61 @@
 import 'package:carporater/features/complaints/presentation/widgets/status_badge.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:carporater/core/widgets/main_scaffold.dart';
 import 'package:carporater/features/complaints/domain/model/complaint_model.dart';
 import 'package:carporater/features/complaints/presentation/widgets/image_displayer.dart';
 import 'package:carporater/features/complaints/presentation/widgets/item.dart';
 
 class ComplainDetails extends StatelessWidget {
+
+  final List<File> dummyImages = [
+  File('assets/images/banner1.jpeg'),
+  File('assets/images/banner2.jpeg'),
+  File('assets/images/banner3.jpeg'),
+];
   final ComplaintModel complaint;
 
-  const ComplainDetails({
+   ComplainDetails({
     super.key,
     required this.complaint,
   });
 
 
-  void displayImage(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: true,
-      builder: (context) {
-        return Dialog(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const ImageBox(path: "assets/images/logo.png"),
-                  const SizedBox(height: 20),
-                  const ImageBox(path: "assets/images/logo.png"),
-                  const SizedBox(height: 20),
-                  const ImageBox(path: "assets/images/logo.png"),
-                  const SizedBox(height: 20),
-                  const ImageBox(path: "assets/images/logo.png"),
-                  const SizedBox(height: 20),
 
-                  TextButton(
-                    onPressed: () => Navigator.pop(context),
-                    child: const Text("Back"),
-                  ),
-                ],
+
+
+
+void displayImage(BuildContext context, List<File> images) {
+  showDialog(
+    context: context,
+    builder: (context) {
+      return Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+
+              SmallPhotoCarousel(
+                localImages: images,
               ),
-            ),
+
+              const SizedBox(height: 20),
+
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text("Back"),
+              ),
+            ],
           ),
-        );
-      },
-    );
-  }
+        ),
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +99,7 @@ class ComplainDetails extends StatelessWidget {
                 ),
 
                 TextButton(
-                  onPressed: () => displayImage(context),
+                  onPressed: () => displayImage(context,dummyImages),
                   child: const Text("View Images"),
                 ),
 
